@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampAventura - Campamentos de verano inolvidables</title>
+    <meta name="description" content="CampAventura - Campamentos de verano para niños y adolescentes. Aventura, naturaleza, diversión y aprendizaje garantizados.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        display: ['Fredoka', 'sans-serif']
+                    },
+                    colors: {
+                        forest: {
+                            50: '#f0f7ec',
+                            100: '#d9eacf',
+                            500: '#4a7c2e',
+                            600: '#3a6324',
+                            700: '#2d5016',
+                            800: '#1f3a0e',
+                            900: '#142607',
+                        },
+                        adventure: {
+                            orange: '#ff6b35',
+                            yellow: '#f7931e',
+                            red: '#e63946',
+                            brown: '#8b5a2b',
+                            cream: '#fef3c7',
+                            sky: '#87ceeb',
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.8s ease-out',
+                        'slide-up': 'slideUp 0.8s ease-out',
+                        'float': 'float 3s ease-in-out infinite',
+                        'wiggle': 'wiggle 2s ease-in-out infinite',
+                        'bounce-slow': 'bounce 3s infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(40px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-15px)' }
+                        },
+                        wiggle: {
+                            '0%, 100%': { transform: 'rotate(-3deg)' }, 
+                            '50%': { transform: 'rotate(3deg)' }        
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .gradient-forest {
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c2e 50%, #6fa832 100%);
+        }
+        .gradient-sunset {
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 50%, #ffd23f 100%);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-10px) rotate(-1deg);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+        .hero-bg {
+            background-image: linear-gradient(rgba(20, 38, 7, 0.5), rgba(45, 80, 22, 0.7)), url('https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=1920&h=1080&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .adventure-bg {
+            background-image: linear-gradient(rgba(20, 38, 7, 0.85), rgba(45, 80, 22, 0.85)), url('https://images.unsplash.com/photo-1517824806704-9040b037703b?w=1920&h=800&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+        .tree-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath fill='%234a7c2e' fill-opacity='0.1' d='M30 5l10 20h-7l8 15h-6l10 20H15l10-20h-6l8-15h-7z'/%3E%3C/svg%3E");
+        }
+        .rope-border {
+            border-image: repeating-linear-gradient(45deg, #8b5a2b, #8b5a2b 5px, #a0724a 5px, #a0724a 10px) 10;
+        }
+        .scroll-indicator {
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .blob {
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        }
+    </style>
+</head>
+<body class="bg-adventure-cream dark:bg-gray-900 font-sans transition-colors duration-300">
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-50 bg-white/95 dark:bg-forest-900/95 backdrop-blur-md shadow-sm border-b border-forest-100 dark:border-forest-800">
+        <nav class="container mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <a href="#" class="flex items-center space-x-3">
+                    <div class="w-12 h-12 gradient-forest rounded-2xl flex items-center justify-center shadow-lg transform rotate-3">
+                        <i class="fas fa-campground text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <div class="text-xl font-display font-bold text-forest-700 dark:text-white leading-tight">CampAventura</div>
+                        <div class="text-xs text-adventure-orange font-semibold tracking-wider">CAMPAMENTOS 2026</div>
+                    </div>
+                </a>
+
+                <!-- Nav Links (desktop) -->
+                <ul class="hidden lg:flex items-center space-x-8">
+                    <li><a href="#inicio" class="text-gray-700 dark:text-gray-200 hover:text-adventure-orange dark:hover:text-adventure-orange font-medium transition">Inicio</a></li>
+                    <li><a href="#actividades" class="text-gray-700 dark:text-gray-200 hover:text-adventure-orange dark:hover:text-adventure-orange font-medium transition">Actividades</a></li>
+                    <li><a href="#programas" class="text-gray-700 dark:text-gray-200 hover:text-adventure-orange dark:hover:text-adventure-orange font-medium transition">Programas</a></li>
+                    <li><a href="#galeria" class="text-gray-700 dark:text-gray-200 hover:text-adventure-orange dark:hover:text-adventure-orange font-medium transition">Galería</a></li>
+                    <li><a href="#precios" class="text-gray-700 dark:text-gray-200 hover:text-adventure-orange dark:hover:text-adventure-orange font-medium transition">Precios</a></li>
+                    <li><a href="#faq" class="text-gray-700 dark:text-gray-200 hover:text-adventure-orange dark:hover:text-adventure-orange font-medium transition">FAQ</a></li>
+                    <li><a href="#contacto" class="text-gray-700 dark:text-gray-200 hover:text-adventure-orange dark:hover:text-adventure-orange font-medium transition">Contacto</a></li>
+                </ul>
+
+                <!-- Actions -->
+                <div class="flex items-center space-x-3">
+                    <button id="themeToggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-forest-800 transition">
+                        <i class="fas fa-moon text-gray-700 dark:hidden"></i>
+                        <i class="fas fa-sun text-adventure-yellow hidden dark:inline"></i>
+                    </button>
+
+                    <a href="#inscripcion" class="hidden md:inline-flex items-center gradient-sunset text-white px-5 py-2 rounded-full font-bold hover:opacity-90 transition shadow-md">
+                        <i class="fas fa-ticket-alt mr-2"></i>Inscribirse
+                    </a>
+
+                    <button id="mobileMenuBtn" class="lg:hidden p-2 rounded-full hover:bg-gray-100 dark:hover:bg-forest-800 transition">
+                        <i class="fas fa-bars text-gray-700 dark:text-gray-200"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile menu -->
+            <ul id="mobileMenu" class="hidden lg:hidden mt-4 space-y-2 pb-4">
+                <li><a href="#inicio" class="block py-2 text-gray-700 dark:text-gray-200 hover:text-adventure-orange">Inicio</a></li>
+                <li><a href="#actividades" class="block py-2 text-gray-700 dark:text-gray-200 hover:text-adventure-orange">Actividades</a></li>
+                <li><a href="#programas" class="block py-2 text-gray-700 dark:text-gray-200 hover:text-adventure-orange">Programas</a></li>
+                <li><a href="#galeria" class="block py-2 text-gray-700 dark:text-gray-200 hover:text-adventure-orange">Galería</a></li>
+                <li><a href="#precios" class="block py-2 text-gray-700 dark:text-gray-200 hover:text-adventure-orange">Precios</a></li>
+                <li><a href="#faq" class="block py-2 text-gray-700 dark:text-gray-200 hover:text-adventure-orange">FAQ</a></li>
+                <li><a href="#contacto" class="block py-2 text-gray-700 dark:text-gray-200 hover:text-adventure-orange">Contacto</a></li>
+                <li><a href="#inscripcion" class="block py-2 text-adventure-orange font-bold">🎫 Inscribirse</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero-bg text-white relative min-h-[90vh] flex items-center">
+        <div class="container mx-auto px-4 py-20 relative z-10">
+            <div class="max-w-3xl animate-slide-up">
+                <span class="inline-block bg-adventure-orange/90 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-bold mb-6 shadow-lg">
+                    🔥 ¡Inscripciones abiertas Verano 2026!
+                </span>
+                <h1 class="text-5xl md:text-7xl font-display font-bold leading-tight mb-6">
+                    Vive la <span class="gradient-text">aventura</span> de tu vida
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-100 mb-8 max-w-2xl leading-relaxed">
+                    Campamentos de verano para niños y adolescentes de 6 a 17 años. Naturaleza, deportes, amigos y recuerdos inolvidables te esperan.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#inscripcion" class="gradient-sunset text-white px-8 py-4 rounded-full font-bold hover:opacity-90 transition shadow-lg hover:shadow-xl">
+                        <i class="fas fa-ticket-alt mr-2"></i>Reservar plaza
+                    </a>
+                    <a href="#programas" class="bg-white/20 backdrop-blur-sm border-2 border-white text-white px-8 py-4 rounded-full font-bold hover:bg-white hover:text-forest-700 transition">
+                        Ver programas <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                <!-- Stats -->
+                <div class="grid grid-cols-3 gap-6 mt-16 max-w-lg">
+                    <div class="border-l-4 border-adventure-orange pl-4">
+                        <div class="text-3xl font-bold text-adventure-orange">20+</div>
+                        <div class="text-sm text-gray-200">Años de experiencia</div>
+                    </div>
+                    <div class="border-l-4 border-adventure-orange pl-4">
+                        <div class="text-3xl font-bold text-adventure-orange">5K+</div>
+                        <div class="text-sm text-gray-200">Campistas felices</div>
+                    </div>
+                    <div class="border-l-4 border-adventure-orange pl-4">
+                        <div class="text-3xl font-bold text-adventure-orange">100%</div>
+                        <div class="text-sm text-gray-200">Seguridad</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 scroll-indicator">
+            <i class="fas fa-chevron-down text-adventure-orange text-2xl"></i>
+        </div>
+    </section>
+
+    <!-- Countdown -->
+    <section class="py-12 gradient-forest text-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-8">
+                <h2 class="text-2xl md:text-3xl font-display font-bold mb-2">
+                    ⏰ Próximo campamento comienza en
+                </h2>
+                <p class="text-forest-100">15 de Julio, 2026 - ¡No te quedes fuera!</p>
+            </div>
+            <div class="flex justify-center gap-4 md:gap-8">
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-4 md:p-6 text-center min-w-[90px] border-2 border-white/20">
+                    <div class="text-4xl md:text-5xl font-bold text-adventure-orange" id="days">00</div>
+                    <div class="text-sm text-forest-100 uppercase tracking-wider">Días</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-4 md:p-6 text-center min-w-[90px] border-2 border-white/20">
+                    <div class="text-4xl md:text-5xl font-bold text-adventure-orange" id="hours">00</div>
+                    <div class="text-sm text-forest-100 uppercase tracking-wider">Horas</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-4 md:p-6 text-center min-w-[90px] border-2 border-white/20">
+                    <div class="text-4xl md:text-5xl font-bold text-adventure-orange" id="minutes">00</div>
+                    <div class="text-sm text-forest-100 uppercase tracking-wider">Min</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-4 md:p-6 text-center min-w-[90px] border-2 border-white/20">
+                    <div class="text-4xl md:text-5xl font-bold text-adventure-orange" id="seconds">00</div>
+                    <div class="text-sm text-forest-100 uppercase tracking-wider">Seg</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Actividades -->
+    <section id="actividades" class="py-20 bg-white dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <span class="text-adventure-orange font-bold uppercase tracking-wider">Diversión sin límites</span>
+                <h2 class="text-4xl md:text-5xl font-display font-bold text-forest-700 dark:text-white mt-2 mb-4">
+                    Actividades <span class="gradient-text">Increíbles</span>
+                </h2>
+                <p class="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
+                    Más de 30 actividades diseñadas para divertirse, aprender y crecer
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <div class="card-hover bg-adventure-cream dark:bg-gray-900 rounded-2xl p-6 text-center shadow-md border-2 border-transparent hover:border-adventure-orange">
+                    <div class="w-16 h-16 mx-auto mb-4 gradient-forest rounded-2xl flex items-center justify-center transform rotate-6">
+                        <i class="fas fa-fire text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-forest-700 dark:text-white mb-1">Fogatas</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Noches mágicas</p>
+                </div>
+                <div class="card-hover bg-adventure-cream dark:bg-gray-900 rounded-2xl p-6 text-center shadow-md border-2 border-transparent hover:border-adventure-orange">
+                    <div class="w-16 h-16 mx-auto mb-4 gradient-sunset rounded-2xl flex items-center justify-center transform -rotate-6">
+                        <i class="fas fa-swimmer text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-forest-700 dark:text-white mb-1">Natación</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Piscina y lago</p>
+                </div>
+                <div class="card-hover bg-adventure-cream dark:bg-gray-900 rounded-2xl p-6 text-center shadow-md border-2 border-transparent hover:border-adventure-orange">
+                    <div class="w-16 h-16 mx-auto mb-4 gradient-forest rounded-2xl flex items-center justify-center transform rotate-3">
+                        <i class="fas fa-horse text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-forest-700 dark:text-white mb-1">Equitación</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Paseos a caballo</p>
+                </div>
+                <div class="card-hover bg-adventure-cream dark:bg-gray-900 rounded-2xl p-6 text-center shadow-md border-2 border-transparent hover:border-adventure-orange">
+                    <div class="w-16 h-16 mx-auto mb-4 gradient-sunset rounded-2xl flex items-center justify-center transform -rotate-3">
+                        <i class="fas fa-mountain text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-forest-700 dark:text-white mb-1">Senderismo</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Rutas naturales</p>
+                </div>
+                <div class="card-hover bg-adventure-cream dark:bg-gray-900 rounded-2xl p-6 text-center shadow-md border-2 border-transparent hover:border-adventure-orange">
+                    <div class="w-16 h-16 mx-auto mb-4 gradient-forest rounded-2xl flex items-center justify-center transform rotate-6">
+                        <i class="fas fa-bowling-ball text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-forest-700 dark:text-white mb-1">Tirolesa</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Adrenalina pura</p>
+                </div>
+                <div class="card-hover bg-adventure-cream dark:bg-gray-900 rounded-2xl p-6 text-center shadow-md border-2 border-transparent hover:border-adventure-orange">
+                    <div class="w-16 h-16 mx-auto mb-4 gradient-sunset rounded-2xl flex items-center justify-center transform -rotate-6">
+                        <i class="fas fa-palette text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-forest-700 dark:text-white mb-1">Artes</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Manualidades</p>
+                </div>
+                <div class="card-hover bg-adventure-cream dark:bg-gray-900 rounded-2xl p-6 text-center shadow-md border-2 border-transparent hover:border-adventure-orange">
+                    <div class="w-16 h-16 mx-auto mb-4 gradient-forest rounded-2xl flex items-center justify-center transform rotate-3">
+                        <i class="fas fa-futbol text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-forest-700 dark:text-white mb-1">Deportes</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Fútbol, básquet</p>
+                </div>
+                <div class="card-hover bg-adventure-cream dark:bg-gray-900 rounded-2xl p-6 text-center shadow-md border-2 border-transparent hover:border-adventure-orange">
+                    <div class="w-16 h-16 mx-auto mb-4 gradient-sunset rounded-2xl flex items-center justify-center transform -rotate-3">
+                        <i class="fas fa-music text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-forest-700 dark:text-white mb-1">Música</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Talleres creativos</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programas por edades -->
+    <section id="programas" class="py-20 bg-adventure-cream dark:bg-gray-900 tree-pattern">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <span class="text-adventure-orange font-bold uppercase tracking-wider">Para cada edad</span>
+                <h2 class="text-4xl md:text-5xl font-display font-bold text-forest-700 dark:text-white mt-2 mb-4">
+                    Nuestros <span class="gradient-text">Programas</span>
+                </h2>
+                <p class="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
+                    Programas diseñados específicamente para cada etapa de crecimiento
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Programa 1 -->
+                <div class="card-hover bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-lg relative">
+                    <div class="gradient-forest p-6 text-white text-center">
+                        <div class="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 backdrop-blur-sm">
+                            <i class="fas fa-child text-4xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-display font-bold">Exploradores</h3>
+                        <p class="text-forest-100">6 - 9 años</p>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-adventure-orange mr-3 mt-1"></i>
+                                <span class="text-gray-700 dark:text-gray-300">Juegos y dinámicas grupales</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-adventure-orange mr-3 mt-1"></i>
+                                <span class="text-gray-700 dark:text-gray-300">Manualidades creativas</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-adventure-orange mr-3 mt-1"></i>
+                                <span class="text-gray-700 dark:text-gray-300">Primeros contactos con naturaleza</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-adventure-orange mr-3 mt-1"></i>
+                                <span class="text-gray-700 dark:text-gray-300">Actividades acuáticas supervisadas</span>
+                            </li>
+                        </ul>
+                        <div class="text-center">
+                            <div class="text-sm text-gray-500">Desde</div>
+                            <div class="text-3xl font-bold text-forest-700 dark:text-white">$299<span class="text-sm text-gray-500">/semana</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Programa 2 - Destacado -->
+                <div class="card-hover bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-2xl relative transform md:-translate-y-4 border-4 border-adventure-orange">
+                    <div class="absolute top-4 right-4 bg-adventure-orange text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
+                        ⭐ MÁS POPULAR
+                    </div>
+                    <div class="gradient-sunset p-6 text-white text-center">
+                        <div class="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 backdrop-blur-sm">
+                            <i class="fas fa-hiking text-4xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-display font-bold">Aventureros</h3>
+                        <p class="text-white/90">10 - 13 años</p>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-adventure-orange mr-3 mt-1"></i>
+                                <span class="text-gray-700 dark:text-gray-300">Todas las actividades de Exploradores</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-adventure-orange mr-3 mt-1"></i>
+                                <span class="text-gray-700 dark:text-gray-300">Tirolesa y rapel</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-adventure-orange mr-3 mt-1"></i>
+                                <span class="text-gray-700 dark:text-gray-300">Excursiones y senderismo</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-adventure-orange mr-3 mt-1"></i>
+                                <span class="text-gray-700 dark:text-gray-300">Talleres de supervivencia</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-adventure-orange mr-3 mt-1"></i>
+                                <span class="text-gray-700 dark:text-gray-300">Noches de fogata especiales</span>
+                            </li>
+                        </ul>
+                        <div class="text-center">
+                            <div class="text-sm text-gray-500">Desde</div>
+                            <div class="text-3xl font-bold text-forest-700 dark:text-white">$399<span class="text-sm text-gray-500">/semana</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Programa 3 -->
+                <div class="card-hover bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-lg relative">
+                    <div class="gradient-forest p-6 text-white text-center">
+                        <div class="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 backdrop-blur-sm">
+                            <i class="fas fa-user-graduate text-4xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-display font-bold">Exploradores Pro</h3>
+                        <p class="text-forest-100">14 - 17 años</p>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-adventure-orange mr-3 mt-1"></i>
+                                <span class="text-gray-700 dark:text-gray-300">Todas las actividades anteriores</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-adventure-orange mr-3 mt-1"></i>
+                                <span class="text-gray-700 dark:text-gray-300">Actividades de liderazgo</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-adventure-orange mr-3 mt-1"></i>
+                                <span class="text-gray-700 dark:text-gray-300">Excursiones avanzadas</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-adventure-orange mr-3 mt-1"></i>
+                                <span class="text-gray-700 dark:text-gray-300">Deportes de aventura</span>
+                            </li>
+                        </ul>
+                        <div class="text-center">
+                            <div class="text-sm text-gray-500">Desde</div>
+                            <div class="text-3xl font-bold text-forest-700 dark:text-white">$449<span class="text-sm text-gray-500">/semana</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galería -->
+    <section id="galeria" class="py-20 bg-white dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <span class="text-adventure-orange font-bold uppercase tracking-wider">Momentos mágicos</span>
+                <h2 class="text-4xl md:text-5xl font-display font-bold text-forest-700 dark:text-white mt-2 mb-4">
+                    Nuestra <span class="gradient-text">Galería</span>
+                </h2>
+                <p class="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
+                    Mira las aventuras que han vivido nuestros campistas
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="relative group overflow-hidden rounded-2xl shadow-lg col-span-2 row-span-2">
+                    <img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=800&h=800&fit=crop" 
+                         alt="Campamento" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-forest-900/80 to-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-6">
+                        <div class="text-white">
+                            <h3 class="font-bold text-xl">Vida en el campamento</h3>
+                            <p class="text-sm">Nuestras instalaciones</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative group overflow-hidden rounded-2xl shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1533167649124-6f3751387669?w=400&h=400&fit=crop" 
+                         alt="Fogata" class="w-full h-48 object-cover group-hover:scale-110 transition duration-500">
+                </div>
+                <div class="relative group overflow-hidden rounded-2xl shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=400&h=400&fit=crop" 
+                         alt="Senderismo" class="w-full h-48 object-cover group-hover:scale-110 transition duration-500">
+                </div>
+                <div class="relative group overflow-hidden rounded-2xl shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1504609813442-a8924e83f76e?w=400&h=400&fit=crop" 
+                         alt="Naturaleza" class="w-full h-48 object-cover group-hover:scale-110 transition duration-500">
+                </div>
+                <div class="relative group overflow-hidden rounded-2xl shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1526485912449-e52839f02f5b?w=400&h=400&fit=crop" 
+                         alt="Actividades" class="w-full h-48 object-cover group-hover:scale-110 transition duration-500">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="adventure-bg py-20 text-white">
+        <div class="container mx-auto px-4 text-center max-w-4xl">
+            <i class="fas fa-tree text-adventure-orange text-6xl mb-6 animate-wiggle"></i>
+            <h2 class="text-4xl md:text-5xl font-display font-bold mb-6">
+                ¿Por qué elegir <span class="gradient-text">CampAventura</span>?
+            </h2>
+            <p class="text-xl text-gray-200 mb-8 leading-relaxed">
+                Porque no solo ofrecemos un campamento, ofrecemos una experiencia que marcará la vida de tus hijos para siempre
+            </p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-adventure-orange rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg">
+                        <i class="fas fa-shield-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold">100% Seguro</h3>
+                    <p class="text-sm text-gray-300">Personal certificado</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-adventure-orange rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg">
+                        <i class="fas fa-utensils text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold">Comida Saludable</h3>
+                    <p class="text-sm text-gray-300">Menú balanceado</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-adventure-orange rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg">
+                        <i class="fas fa-user-md text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold">Enfermería 24/7</h3>
+                    <p class="text-sm text-gray-300">Atención médica</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-adventure-orange rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg">
+                        <i class="fas fa-camera text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold">Fotos Diarias</h3>
+                    <p class="text-sm text-gray-300">Para los padres</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonios -->
+    <section class="py-20 bg-adventure-cream dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <span class="text-adventure-orange font-bold uppercase tracking-wider">Familias felices</span>
+                <h2 class="text-4xl md:text-5xl font-display font-bold text-forest-700 dark:text-white mt-2 mb-4">
+                    Lo que dicen los <span class="gradient-text">padres</span>
+                </h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card-hover bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-md relative">
+                    <div class="absolute -top-4 left-8 w-12 h-12 gradient-sunset rounded-full flex items-center justify-center shadow-lg">
+                        <i class="fas fa-quote-left text-white"></i>
+                    </div>
+                    <div class="flex text-adventure-orange mb-4 mt-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-700 dark:text-gray-300 mb-6 italic leading-relaxed">
+                        "Mi hijo volvió transformado. Más independiente, con nuevos amigos y lleno de historias increíbles. ¡Volveremos el próximo año!"
+                    </p>
+                    <div class="flex items-center">
+                        <img src="https://i.pravatar.cc/50?img=5" class="w-12 h-12 rounded-full mr-4" alt="Madre">
+                        <div>
+                            <div class="font-bold text-forest-700 dark:text-white">Laura Martínez</div>
+                            <div class="text-sm text-gray-500">Mamá de Mateo, 9 años</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-hover bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-md relative">
+                    <div class="absolute -top-4 left-8 w-12 h-12 gradient-sunset rounded-full flex items-center justify-center shadow-lg">
+                        <i class="fas fa-quote-left text-white"></i>
+                    </div>
+                    <div class="flex text-adventure-orange mb-4 mt-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-700 dark:text-gray-300 mb-6 italic leading-relaxed">
+                        "La seguridad y el profesionalismo del equipo nos dio total tranquilidad. Las fotos diarias fueron un detalle maravilloso."
+                    </p>
+                    <div class="flex items-center">
+                        <img src="https://i.pravatar.cc/50?img=12" class="w-12 h-12 rounded-full mr-4" alt="Padre">
+                        <div>
+                            <div class="font-bold text-forest-700 dark:text-white">Carlos Rodríguez</div>
+                            <div class="text-sm text-gray-500">Papá de Sofía, 12 años</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-hover bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-md relative">
+                    <div class="absolute -top-4 left-8 w-12 h-12 gradient-sunset rounded-full flex items-center justify-center shadow-lg">
+                        <i class="fas fa-quote-left text-white"></i>
+                    </div>
+                    <div class="flex text-adventure-orange mb-4 mt-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-700 dark:text-gray-300 mb-6 italic leading-relaxed">
+                        "Mis dos hijos fueron y ambos quedaron encantados. Las actividades son variadas y los monitores excelentes. 100% recomendado."
+                    </p>
+                    <div class="flex items-center">
+                        <img src="https://i.pravatar.cc/50?img=47" class="w-12 h-12 rounded-full mr-4" alt="Madre">
+                        <div>
+                            <div class="font-bold text-forest-700 dark:text-white">Ana Gómez</div>
+                            <div class="text-sm text-gray-500">Mamá de Lucas y Emma</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Precios y Fechas -->
+    <section id="precios" class="py-20 bg-white dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <span class="text-adventure-orange font-bold uppercase tracking-wider">Planes y fechas</span>
+                <h2 class="text-4xl md:text-5xl font-display font-bold text-forest-700 dark:text-white mt-2 mb-4">
+                    Elige tu <span class="gradient-text">Aventura</span>
+                </h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                <div class="card-hover bg-adventure-cream dark:bg-gray-900 rounded-2xl p-8 shadow-md border-2 border-transparent hover:border-forest-500">
+                    <h3 class="text-2xl font-display font-bold text-forest-700 dark:text-white mb-2">1 Semana</h3>
+                    <p class="text-gray-500 mb-4">Julio 15 - 21</p>
+                    <div class="text-4xl font-bold text-forest-700 dark:text-white mb-6">$299</div>
+                    <ul class="space-y-2 mb-6 text-gray-700 dark:text-gray-300">
+                        <li><i class="fas fa-check text-adventure-orange mr-2"></i>7 días / 6 noches</li>
+                        <li><i class="fas fa-check text-adventure-orange mr-2"></i>Pensión completa</li>
+                        <li><i class="fas fa-check text-adventure-orange mr-2"></i>Todas las actividades</li>
+                        <li><i class="fas fa-check text-adventure-orange mr-2"></i>Uniforme incluido</li>
+                    </ul>
+                    <a href="#inscripcion" class="block text-center gradient-forest text-white py-3 rounded-full font-bold hover:opacity-90 transition">Reservar</a>
+                </div>
+
+                <div class="card-hover bg-gradient-to-br from-forest-700 to-forest-900 text-white rounded-2xl p-8 shadow-2xl transform md:-translate-y-4 relative">
+                    <div class="absolute -top-3 right-6 bg-adventure-orange text-white px-4 py-1 rounded-full text-xs font-bold shadow-lg">
+                        ⭐ MEJOR VALOR
+                    </div>
+                    <h3 class="text-2xl font-display font-bold mb-2">2 Semanas</h3>
+                    <p class="text-forest-100 mb-4">Julio 15 - 28</p>
+                    <div class="text-4xl font-bold mb-2">$549</div>
+                    <div class="text-sm text-adventure-orange line-through mb-4">$598</div>
+                    <ul class="space-y-2 mb-6">
+                        <li><i class="fas fa-check text-adventure-orange mr-2"></i>14 días / 13 noches</li>
+                        <li><i class="fas fa-check text-adventure-orange mr-2"></i>Pensión completa</li>
+                        <li><i class="fas fa-check text-adventure-orange mr-2"></i>Todas las actividades</li>
+                        <li><i class="fas fa-check text-adventure-orange mr-2"></i>Uniforme + mochila</li>
+                        <li><i class="fas fa-check text-adventure-orange mr-2"></i>Excursión especial</li>
+                    </ul>
+                    <a href="#inscripcion" class="block text-center gradient-sunset text-white py-3 rounded-full font-bold hover:opacity-90 transition shadow-lg">Reservar</a>
+                </div>
+
+                <div class="card-hover bg-adventure-cream dark:bg-gray-900 rounded-2xl p-8 shadow-md border-2 border-transparent hover:border-forest-500">
+                    <h3 class="text-2xl font-display font-bold text-forest-700 dark:text-white mb-2">Mes Completo</h3>
+                    <p class="text-gray-500 mb-4">Julio 15 - Ago 12</p>
+                    <div class="text-4xl font-bold text-forest-700 dark:text-white mb-6">$999</div>
+                    <ul class="space-y-2 mb-6 text-gray-700 dark:text-gray-300">
+                        <li><i class="fas fa-check text-adventure-orange mr-2"></i>28 días / 27 noches</li>
+                        <li><i class="fas fa-check text-adventure-orange mr-2"></i>Pensión completa</li>
+                        <li><i class="fas fa-check text-adventure-orange mr-2"></i>Todas las actividades</li>
+                        <li><i class="fas fa-check text-adventure-orange mr-2"></i>Kit completo</li>
+                        <li><i class="fas fa-check text-adventure-orange mr-2"></i>3 excursiones</li>
+                    </ul>
+                    <a href="#inscripcion" class="block text-center gradient-forest text-white py-3 rounded-full font-bold hover:opacity-90 transition">Reservar</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-20 bg-adventure-cream dark:bg-gray-900">
+        <div class="container mx-auto px-4 max-w-3xl">
+            <div class="text-center mb-12">
+                <span class="text-adventure-orange font-bold uppercase tracking-wider">Resolvemos tus dudas</span>
+                <h2 class="text-4xl md:text-5xl font-display font-bold text-forest-700 dark:text-white mt-2 mb-4">
+                    Preguntas <span class="gradient-text">Frecuentes</span>
+                </h2>
+            </div>
+
+            <div class="space-y-4">
+                <div class="faq-item bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden">
+                    <button class="faq-toggle w-full p-6 text-left flex justify-between items-center hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+                        <span class="font-bold text-forest-700 dark:text-white">¿Qué debe llevar mi hijo al campamento?</span>
+                        <i class="fas fa-chevron-down text-adventure-orange transition"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-6 text-gray-600 dark:text-gray-300">
+                        Enviamos una lista detallada después de la inscripción. Incluye ropa cómoda, traje de baño, protector solar, repelente, linterna y saco de dormir. El uniforme es provisto por nosotros.
+                    </div>
+                </div>
+                <div class="faq-item bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden">
+                    <button class="faq-toggle w-full p-6 text-left flex justify-between items-center hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+                        <span class="font-bold text-forest-700 dark:text-white">¿Cómo es la supervisión de los monitores?</span>
+                        <i class="fas fa-chevron-down text-adventure-orange transition"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-6 text-gray-600 dark:text-gray-300">
+                        Contamos con ratio de 1 monitor por cada 8 niños. Todos nuestros monitores están certificados en primeros auxilios y tienen experiencia mínima de 3 años.
+                    </div>
+                </div>
+                <div class="faq-item bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden">
+                    <button class="faq-toggle w-full p-6 text-left flex justify-between items-center hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+                        <span class="font-bold text-forest-700 dark:text-white">¿Puedo comunicarme con mi hijo durante el campamento?</span>
+                        <i class="fas fa-chevron-down text-adventure-orange transition"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-6 text-gray-600 dark:text-gray-300">
+                        Sí, hay horarios establecidos para llamadas. Además, subimos fotos diarias a una plataforma privada para que los padres puedan seguir las aventuras de sus hijos.
+                    </div>
+                </div>
+                <div class="faq-item bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden">
+                    <button class="faq-toggle w-full p-6 text-left flex justify-between items-center hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+                        <span class="font-bold text-forest-700 dark:text-white">¿Qué pasa si mi hijo tiene alergias o necesidades especiales?</span>
+                        <i class="fas fa-chevron-down text-adventure-orange transition"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-6 text-gray-600 dark:text-gray-300">
+                        En el formulario de inscripción indicas todas las alergias, medicamentos y necesidades especiales. Contamos con enfermería 24/7 y menú adaptado para alergias alimentarias.
+                    </div>
+                </div>
+                <div class="faq-item bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden">
+                    <button class="faq-toggle w-full p-6 text-left flex justify-between items-center hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+                        <span class="font-bold text-forest-700 dark:text-white">¿Cuál es la política de cancelación?</span>
+                        <i class="fas fa-chevron-down text-adventure-orange transition"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-6 text-gray-600 dark:text-gray-300">
+                        Cancelación gratuita hasta 30 días antes. Entre 30 y 15 días, 50% de reembolso. Menos de 15 días, no hay reembolso pero puedes cambiar de fecha sin costo.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formulario de Inscripción -->
+    <section id="inscripcion" class="py-20 bg-white dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto bg-gradient-to-br from-forest-700 to-forest-900 rounded-3xl overflow-hidden shadow-2xl">
+                <div class="grid md:grid-cols-2">
+                    <div class="p-8 md:p-12 text-white">
+                        <span class="inline-block bg-adventure-orange text-white px-4 py-1 rounded-full text-sm font-bold mb-4">
+                            🎫 ¡Reserva tu plaza!
+                        </span>
+                        <h2 class="text-3xl md:text-4xl font-display font-bold mb-4">
+                            Formulario de Inscripción
+                        </h2>
+                        <p class="text-forest-100 mb-6">
+                            Completa el formulario y nos pondremos en contacto contigo en menos de 24 horas para confirmar tu reserva.
+                        </p>
+                        <ul class="space-y-3 text-forest-100">
+                            <li><i class="fas fa-check-circle text-adventure-orange mr-2"></i>Plazas limitadas</li>
+                            <li><i class="fas fa-check-circle text-adventure-orange mr-2"></i>Reserva con solo 30%</li>
+                            <li><i class="fas fa-check-circle text-adventure-orange mr-2"></i>Cancelación flexible</li>
+                            <li><i class="fas fa-check-circle text-adventure-orange mr-2"></i>Descuento hermanos 15%</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white dark:bg-gray-900 p-8 md:p-12">
+                        <form class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-semibold text-forest-700 dark:text-white mb-1">Nombre del padre/madre</label>
+                                <input type="text" placeholder="Tu nombre completo" 
+                                       class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-700 dark:bg-gray-800 dark:text-white focus:border-adventure-orange focus:outline-none transition">
+                            </div>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div>
+                                    <label class="block text-sm font-semibold text-forest-700 dark:text-white mb-1">Email</label>
+                                    <input type="email" placeholder="tu@email.com" 
+                                           class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-700 dark:bg-gray-800 dark:text-white focus:border-adventure-orange focus:outline-none transition">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold text-forest-700 dark:text-white mb-1">Teléfono</label>
+                                    <input type="tel" placeholder="+1 234 567 890" 
+                                           class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-700 dark:bg-gray-800 dark:text-white focus:border-adventure-orange focus:outline-none transition">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-forest-700 dark:text-white mb-1">Nombre del campista</label>
+                                <input type="text" placeholder="Nombre de tu hijo/a" 
+                                       class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-700 dark:bg-gray-800 dark:text-white focus:border-adventure-orange focus:outline-none transition">
+                            </div>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div>
+                                    <label class="block text-sm font-semibold text-forest-700 dark:text-white mb-1">Edad</label>
+                                    <input type="number" placeholder="10" min="6" max="17"
+                                           class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-700 dark:bg-gray-800 dark:text-white focus:border-adventure-orange focus:outline-none transition">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold text-forest-700 dark:text-white mb-1">Programa</label>
+                                    <select class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-700 dark:bg-gray-800 dark:text-white focus:border-adventure-orange focus:outline-none transition">
+                                        <option>Exploradores (6-9)</option>
+                                        <option>Aventureros (10-13)</option>
+                                        <option>Exploradores Pro (14-17)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-forest-700 dark:text-white mb-1">Plan</label>
+                                <select class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-700 dark:bg-gray-800 dark:text-white focus:border-adventure-orange focus:outline-none transition">
+                                    <option>1 Semana - $299</option>
+                                    <option>2 Semanas - $549 (Recomendado)</option>
+                                    <option>Mes Completo - $999</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="w-full gradient-sunset text-white py-4 rounded-xl font-bold hover:opacity-90 transition shadow-lg">
+                                <i class="fas fa-paper-plane mr-2"></i>Enviar inscripción
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contacto" class="py-20 bg-adventure-cream dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <span class="text-adventure-orange font-bold uppercase tracking-wider">¿Tienes dudas?</span>
+                <h2 class="text-4xl md:text-5xl font-display font-bold text-forest-700 dark:text-white mt-2 mb-4">
+                    Contáctanos <span class="gradient-text">Ahora</span>
+                </h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                <div class="card-hover bg-white dark:bg-gray-800 rounded-2xl p-8 text-center shadow-md">
+                    <div class="w-16 h-16 mx-auto mb-4 gradient-forest rounded-2xl flex items-center justify-center">
+                        <i class="fas fa-map-marker-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-forest-700 dark:text-white mb-2">Ubicación</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm">
+                        Km 45 Carretera al Bosque<br>Valle Verde, CP 12345
+                    </p>
+                </div>
+                <div class="card-hover bg-white dark:bg-gray-800 rounded-2xl p-8 text-center shadow-md">
+                    <div class="w-16 h-16 mx-auto mb-4 gradient-sunset rounded-2xl flex items-center justify-center">
+                        <i class="fas fa-phone text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-forest-700 dark:text-white mb-2">Teléfono</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm">
+                        +1 (234) 567-8900<br>+1 (234) 567-8901
+                    </p>
+                </div>
+                <div class="card-hover bg-white dark:bg-gray-800 rounded-2xl p-8 text-center shadow-md">
+                    <div class="w-16 h-16 mx-auto mb-4 gradient-forest rounded-2xl flex items-center justify-center">
+                        <i class="fas fa-envelope text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-forest-700 dark:text-white mb-2">Email</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm">
+                        info@campaventura.com<br>reservas@campaventura.com
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="gradient-forest text-white pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center transform rotate-3">
+                            <i class="fas fa-campground text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <div class="text-xl font-display font-bold leading-tight">CampAventura</div>
+                            <div class="text-xs text-adventure-orange font-semibold tracking-wider">CAMPAMENTOS 2026</div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-forest-100 mb-4">
+                        Creando aventuras inolvidables y recuerdos para toda la vida desde hace más de 20 años.
+                    </p>
+                    <div class="flex space-x-3">
+                        <a href="#" class="w-10 h-10 bg-white/10 hover:bg-adventure-orange rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/10 hover:bg-adventure-orange rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/10 hover:bg-adventure-orange rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/10 hover:bg-adventure-orange rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-display font-bold text-lg mb-4">Enlaces</h3>
+                    <ul class="space-y-2 text-sm text-forest-100">
+                        <li><a href="#inicio" class="hover:text-adventure-orange transition">Inicio</a></li>
+                        <li><a href="#actividades" class="hover:text-adventure-orange transition">Actividades</a></li>
+                        <li><a href="#programas" class="hover:text-adventure-orange transition">Programas</a></li>
+                        <li><a href="#galeria" class="hover:text-adventure-orange transition">Galería</a></li>
+                        <li><a href="#precios" class="hover:text-adventure-orange transition">Precios</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-display font-bold text-lg mb-4">Información</h3>
+                    <ul class="space-y-2 text-sm text-forest-100">
+                        <li><a href="#faq" class="hover:text-adventure-orange transition">Preguntas frecuentes</a></li>
+                        <li><a href="#" class="hover:text-adventure-orange transition">Política de privacidad</a></li>
+                        <li><a href="#" class="hover:text-adventure-orange transition">Términos y condiciones</a></li>
+                        <li><a href="#" class="hover:text-adventure-orange transition">Blog</a></li>
+                        <li><a href="#" class="hover:text-adventure-orange transition">Trabaja con nosotros</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-display font-bold text-lg mb-4">Contacto</h3>
+                    <ul class="space-y-3 text-sm text-forest-100">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-adventure-orange"></i>
+                            <span>Km 45 Carretera al Bosque<br>Valle Verde, CP 12345</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone mr-3 text-adventure-orange"></i>
+                            <span>+1 (234) 567-8900</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-3 text-adventure-orange"></i>
+                            <span>info@campaventura.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-sm text-forest-100">© 2026 CampAventura. Todos los derechos reservados.</p>
+                <p class="text-sm text-forest-100 mt-4 md:mt-0">
+                    <i class="fas fa-tree text-adventure-orange mr-2"></i>
+                    Hecho con ❤️ para pequeños aventureros
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón WhatsApp -->
+    <a href="https://wa.me/1234567890?text=Hola,%20quiero%20información%20sobre%20los%20campamentos" target="_blank" 
+       class="fixed bottom-6 right-6 w-14 h-14 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center shadow-lg hover:shadow-2xl transition z-40">
+        <i class="fab fa-whatsapp text-white text-3xl"></i>
+    </a>
+
+    <!-- Botón Llamar -->
+    <a href="tel:+1234567890" 
+       class="fixed bottom-6 left-6 w-14 h-14 gradient-sunset hover:opacity-90 rounded-full flex items-center justify-center shadow-lg hover:shadow-2xl transition z-40">
+        <i class="fas fa-phone text-white text-2xl animate-bounce-slow"></i>
+    </a>
+
+    <script>
+        // Dark mode
+        const themeToggle = document.getElementById('themeToggle');
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        }
+        themeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+        });
+
+        // Mobile menu
+        document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobileMenu').classList.add('hidden');
+            });
+        });
+
+        // Countdown - 15 Julio 2026
+        const targetDate = new Date('2026-07-15T09:00:00').getTime();
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const diff = targetDate - now;
+            if (diff < 0) {
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+                return;
+            }
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
+            document.getElementById('days').textContent = String(d).padStart(2, '0');
+            document.getElementById('hours').textContent = String(h).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(m).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(s).padStart(2, '0');
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-toggle').forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const content = toggle.nextElementSibling;
+                const icon = toggle.querySelector('i');
+                content.classList.toggle('hidden');
+                icon.style.transform = content.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.card-hover').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
